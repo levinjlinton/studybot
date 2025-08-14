@@ -6,13 +6,16 @@ from firebase_admin import credentials, firestore
 import pandas as pd
 import matplotlib.pyplot as plt
 
-cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
-if not cred_path or not os.path.exists(cred_path):
-    raise RuntimeError(
-        "Set the GOOGLE_APPLICATION_CREDENTIALS environment variable to your Firebase service account JSON file path."
-    )
-cred = credentials.Certificate(cred_path)
-firebase_admin.initialize_app(cred)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CRED_PATH = os.path.join(BASE_DIR, "serviceAccount.json")
+
+if not os.path.isfile(CRED_PATH):
+    raise FileNotFoundError(f"serviceAccount.json not found at: {CRED_PATH}")
+
+try:
+    firebase_admin.get_app()
+except ValueError:
+    firebase_admin.initialize_app(credentials.Certificate(CRED_PATH))
 db = firestore.client()
 
 name = ""

@@ -1,49 +1,61 @@
-# StudyBot
+STUDYBOT
+========
+A command-line tool to track your study sessions using Firebase.
 
-StudyBot is a Python-based tool to track study sessions using Firebase Firestore. 
-It logs session start and end times, subjects, and generates study statistics and charts.
+---
 
-## Features
-- Create an account and configure study subjects.
-- Start and stop study sessions with automatic time tracking.
-- View study statistics and trends.
-- Generate weekly and subject-wise charts.
+REQUIREMENTS
+1. Python 3.8 or higher
+2. Firebase project and service account JSON key
+3. Installed packages from requirements.txt
 
-## Requirements
-- Python 3.8 or later
-- Firebase Firestore
-- Dependencies listed in requirements.txt
+---
 
-## Installation
-1. Clone the repository:
-   git clone https://github.com/levinjlinton/studybot.git
-   cd studybot
+SETUP
+1. Clone or download the repository.
+2. Open a terminal in the project folder.
+3. Create a virtual environment:
+   Windows:
+       python -m venv venv
+   macOS/Linux:
+       python3 -m venv venv
+4. Activate the virtual environment:
+   Windows:
+       venv\Scripts\activate
+   macOS/Linux:
+       source venv/bin/activate
+5. Install dependencies:
+       pip install -r requirements.txt
 
-2. Create and activate a virtual environment:
-   python -m venv venv
-   source venv/bin/activate     # macOS/Linux
-   venv\Scripts\activate        # Windows
+---
 
-3. Install dependencies:
-   pip install -r requirements.txt
+FIREBASE SETUP
+1. In the Firebase console, go to:
+       Project Settings → Service Accounts → Generate New Private Key
+2. Download the JSON key file.
+3. Place the file in the project folder (e.g., `serviceAccount.json`).
+4. Set the environment variable:
+   Windows:
+       set GOOGLE_APPLICATION_CREDENTIALS=serviceAccount.json
+   macOS/Linux:
+       export GOOGLE_APPLICATION_CREDENTIALS=serviceAccount.json
 
-4. Set up Firebase:
-   - Create a Firebase project and enable Firestore.
-   - Download your Firebase service account key JSON file.
-   - Keep the file private and set the environment variable:
-     export GOOGLE_APPLICATION_CREDENTIALS="path/to/serviceAccountKey.json"
-     (Use 'set' instead of 'export' on Windows.)
+---
 
-## Usage
+USAGE
 Run the program:
    python main.py
 
-Available commands:
-- start — begin a study session
-- end — stop the current session
-- stats — display statistics and generate charts
-- quit — exit the program
+When prompted:
+- Type your name and choose a username.
+- Commands inside the app:
+   start  → Start a study session
+   end    → End the current study session
+   stats  → View statistics and charts
+   quit   → Exit the program
 
-## Notes
-- DONT commit your Firebase service account key to GitHub.
-- Add it and your venv folder to .gitignore.
+---
+
+NOTES
+- The `.gitignore` already hides secrets (JSON keys) and virtual environment folders.
+- Do NOT upload your Firebase JSON key to GitHub.
