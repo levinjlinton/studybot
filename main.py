@@ -20,6 +20,9 @@ username = ""
 
 def start():
     global username, name
+    print("=== Welcome to StudyBot! ===")
+    print("Track your study sessions, view stats, and stay productive.\n")
+
     collections = list(db.collections())
     existing_users = [c.id for c in collections]
 
@@ -41,23 +44,25 @@ def start():
     print(f"Welcome {name}!")
     print("Type 'start' to start a session, 'end' to end a session, 'stats' to display your statistics, or 'quit' to exit")
 
-    x = input("   ").strip().lower()
-    if x == "start":
-        start_session()
-    elif x == "end":
-        end_session()
-    elif x == "stats":
-        print("Displaying your statistics...")
-        display_stats()
-        print("Generating DataFrame and plots...")
-        df = get_sessions_df()
-        print(df)
-        plot_weekly_study_time()
-        plot_subject_pie_chart()
-    elif x == "quit":
-        print("Goodbye!")
-    else:
-        print("Invalid command. Please type 'start', 'end', 'stats', or 'quit'.")
+    while True:
+        x = input("   ").strip().lower()
+        if x == "start":
+            start_session()
+        elif x == "end":
+            end_session()
+        elif x == "stats":
+            print("Displaying your statistics...")
+            display_stats()
+            print("Generating DataFrame and plots...")
+            df = get_sessions_df()
+            print(df)
+            plot_weekly_study_time()
+            plot_subject_pie_chart()
+        elif x == "quit":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid command. Please type 'start', 'end', 'stats', or 'quit'.")
 
 def config():
     subjects = []
